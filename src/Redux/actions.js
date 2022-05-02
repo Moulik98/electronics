@@ -1,10 +1,7 @@
 // action types
 
 // Action Creators
-export const USER =  "USER";
-export const GET_TASK = "GET_TASK"
-export const SORT ="SORT"
-export const LOGOUT= "LOGOUT"
+
 
 // Action Creators
 
