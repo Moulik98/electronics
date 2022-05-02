@@ -8,7 +8,7 @@ export const Orders = () => {
   console.log('list:', list)
   useEffect(()=>{
    getData();
-  },[])
+  })
 
   const getData = async()=>{
     let data = await fetch("http://localhost:8080/orders");
@@ -20,7 +20,7 @@ export const Orders = () => {
     <div>
       <div>
         <div>
-          <select onChange={(e)=>{dispatch(sort(e.target.value))}} className="controls" name="progress" id="progress">
+          <select onChange={(e)=>{dispatch(e.target.value)}} className="controls" name="progress" id="progress">
             <option value="id">ID</option>
             <option value="status">Status</option>
             <option value="cost">Cost</option>
