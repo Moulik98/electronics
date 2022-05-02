@@ -1,25 +1,42 @@
-
-import { USER, SORT, GET_TASK, LOGOUT } from "./actions";
+import { USER_STATUS, USER_DETAILS, SHOW_ORDERS, CHANGE_ORDER, SORT_ORDER } from "./actions";
 
 const init = {
-  isAuth : false,
-  users : [],
-  orders : [],
+    isLoggedIn: false,
+    userDetails: null,
+    orders: []
 };
 
 export const reducer = (store = init, { type, payload }) => {
-  switch (type) {
-    case USER:
-      return {...store , isAuth: true}
-      case SORT :
-        return {...store, orders:[...store.orders].sort((a,b)=>{
-          a[payload] > b[payload] ? 1 : a[payload] < b[payload] ? -1 : 0 
-        })}
-        case GET_TASK:
-          return {...store , orders:payload}
-        case LOGOUT:
-          return {...store , isAuth:false}  
-    default:
-      return store;
-  }
+    switch (type) {
+        case USER_STATUS:
+            return {
+                ...store,
+                isLoggedIn: payload
+            }
+        case USER_DETAILS:
+            return {
+                ...store,
+                userDetails: payload
+            }
+        case SHOW_ORDERS:
+            return {
+                ...store,
+                orders: payload
+            }
+        case CHANGE_ORDER:
+            return {
+                ...store,
+                orders: payload
+            }
+        case SORT_ORDER:
+            console.log('check')
+            return {
+                ...store,
+                orders: [
+                    store.orders.sort((a, b) => a.payload.localeCompare(b.payload))
+                ]
+            }
+        default:
+            return store;
+    }
 };
